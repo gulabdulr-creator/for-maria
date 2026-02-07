@@ -274,7 +274,7 @@
     // PASSCODE NOTE: This is a cute "lock" for privacy (not bank-level security).
     // Anyone with the link + code can open it.
     // Change the passcode here if you want.
-    const PASSCODE = '0712'; // July 12 (first kiss)
+    const PASSCODE = "0712"; // July 12 (first kiss)
 
     // Multiple-choice quiz. Only advances on correct answer.
     // Birth marks question accepts "3" OR "4" (because Abdul isn't sure 😄)
@@ -349,7 +349,7 @@
       const p = document.getElementById('pass');
       if(!p) return;
 
-      if(p.value.trim() === PASSCODE){
+      if (p.value.trim() === String(PASSCODE).trim()) {
         hintEl.textContent = 'Unlocked 😌💖';
         passWrap.style.display = 'none';
         startBtns.style.display = 'flex';
@@ -477,7 +477,7 @@
         <div class="heartBig">💘</div>
         <h1>Yay!!! I love you forever ❤️</h1>
         <p class="sub">Happy Valentine’s Day, Maria.</p>
-        <img class="photo" src="https://gulabdulr-creator.github.io/for-maria/IMG_8768.jpeg?v=3" alt="Abdul-Rehman Gul and Maria Faisal" />
+        <img class="photo" src="https://gulabdulr-creator.github.io/for-maria/IMG_8768.jpeg?v=4" alt="Abdul-Rehman Gul and Maria Faisal" />
         <div class="footer">
           <button class="primary" onclick="bigConfetti()">More confetti 🎉</button>
         </div>
