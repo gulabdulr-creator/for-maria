@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For Maria ❤️</title>
+  <style>
+    :root{
+      --pink:#ff4d6d;
+      --pink2:#ff2e7a;
+      --bg1:#ffe3ea;
+      --bg2:#ff9a9e;
+      --bg3:#fad0c4;
+      --text:#2b2b2b;
+    }
+
+    body{
+      margin:0;
+      font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,'Open Sans','Helvetica Neue',sans-serif;
+      height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background: radial-gradient(circle at top, var(--bg1) 0%, var(--bg2) 40%, var(--bg3) 100%);
+      overflow:hidden;
+      color:var(--text);
+    }
+
+    /* soft glow blobs */
+    .blob{
+      position:fixed;
+      width:380px;
+      height:380px;
+      border-radius:999px;
+      filter: blur(40px);
+      opacity:0.5;
+      z-index:0;
+      animation: drift 10s ease-in-out infinite alternate;
+    }
+    .b1{ top:-120px; left:-120px; background: #ffd1dc; }
+    .b2{ bottom:-140px; right:-140px; background: #ffb3c6; animation-duration: 12s; }
+    @keyframes drift { from{ transform: translate(0,0) scale(1);} to{ transform: translate(50px,30px) scale(1.08);} }
+
+    /* floating hearts */
+    .floater{
+      position:fixed;
+      bottom:-22px;
+      font-size: 20px;
+      pointer-events:none;
+      opacity:0.85;
+      filter: drop-shadow(0 10px 12px rgba(0,0,0,0.14));
+      animation: rise linear forwards;
+    }
+    @keyframes rise { to{ transform: translateY(-115vh) rotate(20deg); opacity:0; } }
+
+    .card{
+      position:relative;
+      z-index:2;
+      width:min(520px, 92vw);
+      background: rgba(255,255,255,0.92);
+      border-radius: 28px;
+      padding: 26px 22px;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.18);
+      backdrop-filter: blur(10px);
+      overflow:hidden;
+      animation: popIn 0.6s ease both;
+    }
+    @keyframes popIn { from{opacity:0; transform: translateY(18px) scale(0.98);} to{opacity:1; transform: translateY(0) scale(1);} }
+
+    .sparkle{
+      position:absolute;
+      inset:-2px;
+      border-radius: 30px;
+      background:
+        radial-gradient(circle at 20% 0%, rgba(255,255,255,0.55), transparent 55%),
+        radial-gradient(circle at 90% 35%, rgba(255,255,255,0.35), transparent 50%),
+        radial-gradient(circle at 60% 110%, rgba(255,255,255,0.35), transparent 55%);
+      pointer-events:none;
+      mix-blend-mode: screen;
+      opacity:0.55;
+    }
+
+    .top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      margin-bottom: 14px;
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-size: 0.92rem;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,77,109,0.10);
+    }
+
+    .progressWrap{
+      width: 48%;
+      min-width: 160px;
+      height: 10px;
+      background: rgba(0,0,0,0.08);
+      border-radius: 999px;
+      overflow:hidden;
+    }
+    .progress{
+      height:100%;
+      width:0%;
+      background: linear-gradient(135deg, var(--pink), var(--pink2));
+      border-radius: 999px;
+      transition: width 0.35s ease;
+    }
+
+    h1{
+      margin: 10px 0 10px;
+      font-size: 1.55rem;
+      line-height: 1.25;
+    }
+
+    .sub{
+      margin: 0 0 14px;
+      opacity: 0.78;
+    }
+
+    .choices{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    button{
+      border:none;
+      border-radius: 18px;
+      padding: 14px 14px;
+      font-size: 1.02rem;
+      cursor:pointer;
+      background: rgba(0,0,0,0.045);
+      transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+      text-align:left;
+    }
+
+    button:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 12px 20px rgba(0,0,0,0.12);
+      background: rgba(0,0,0,0.06);
+    }
+
+    .primary{
+      background: linear-gradient(135deg, var(--pink), var(--pink2));
+      color:white;
+      text-align:center;
+      border-radius: 999px;
+      padding: 14px 18px;
+    }
+
+    .footer{
+      display:flex;
+      justify-content:center;
+      gap:10px;
+      margin-top: 14px;
+      flex-wrap: wrap;
+    }
+
+    .hint{
+      font-size: 0.95rem;
+      margin-top: 10px;
+      min-height: 22px;
+    }
+
+    .shake{
+      animation: shake 0.35s ease;
+    }
+    @keyframes shake{
+      0%{ transform: translateX(0); }
+      25%{ transform: translateX(-8px); }
+      50%{ transform: translateX(8px); }
+      75%{ transform: translateX(-6px); }
+      100%{ transform: translateX(0); }
+    }
+
+    .heartBig{
+      font-size: 3.2rem;
+      margin: 6px 0 8px;
+      animation: heartPop 0.6s ease both;
+    }
+    @keyframes heartPop{ from{transform: scale(0.7); opacity:0;} to{transform: scale(1); opacity:1;} }
+
+    .photo{
+      width: 100%;
+      border-radius: 22px;
+      margin-top: 14px;
+      box-shadow: 0 16px 32px rgba(0,0,0,0.16);
+      display:block;
+    }
+
+    /* countdown */
+    .countNum{
+      font-size: 4.2rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      margin: 6px 0 2px;
+      background: linear-gradient(135deg, var(--pink), var(--pink2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: countPop 0.55s ease both;
+    }
+    @keyframes countPop{ from{opacity:0; transform: scale(0.6);} to{opacity:1; transform: scale(1);} }
+
+    input{
+      width:min(320px, 85%);
+      padding:14px 16px;
+      border-radius:16px;
+      border:1px solid rgba(0,0,0,0.12);
+      font-size:1.05rem;
+      outline:none;
+      background: rgba(255,255,255,0.9);
+    }
+
+    /* confetti */
+    .confetti{
+      position: fixed;
+      top: -10px;
+      width: 10px;
+      height: 16px;
+      border-radius: 4px;
+      animation: fall linear forwards;
+      pointer-events:none;
+      z-index: 10;
+    }
+    @keyframes fall { to{ transform: translateY(110vh) rotate(360deg); } }
+
+    .tinyNote{
+      font-size: 0.88rem;
+      opacity: 0.65;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+
+  <div class="card" id="card">
+    <div class="sparkle"></div>
+
+    <div class="top">
+      <div class="pill">💌 For Maria Faisal</div>
+      <div class="progressWrap" aria-label="progress"><div class="progress" id="progress"></div></div>
+    </div>
+
+    <h1 id="q">Private page 🔒</h1>
+    <p class="sub" id="sub">Enter the passcode to start 😌</p>
+
+    <div class="footer" id="passWrap" style="flex-direction:column; align-items:center;">
+      <input id="pass" type="password" inputmode="numeric" placeholder="Passcode" />
+      <button class="primary" onclick="checkPass()">Unlock ✨</button>
+      <div class="tinyNote">Hint: a date you’ll never forget 😉</div>
+    </div>
+
+    <div class="footer" id="startBtns" style="display:none;">
+      <button class="primary" onclick="start()">Start the quiz ✨</button>
+    </div>
+
+    <div class="choices" id="choices" style="display:none;"></div>
+    <div class="hint" id="hint"></div>
+  </div>
+
+  <script>
+    // PASSCODE NOTE: This is a cute "lock" for privacy (not bank-level security).
+    // Anyone with the link + code can open it.
+    // Change the passcode here if you want.
+    const PASSCODE = '0311'; // March 11 (baat paki)
+
+    // Multiple-choice quiz. Only advances on correct answer.
+    // Birth marks question accepts "3" OR "4" (because Abdul isn't sure 😄)
+    const quiz = [
+      {
+        q: "When was our baat paki?",
+        choices: ["March 3", "March 11", "March 19", "March 27"],
+        correct: ["March 11"],
+        cuteRight: "Okayyy memory on point 😌💖",
+        cuteWrong: "Nopeee 😅 try again, my love"
+      },
+      {
+        q: "When was our nikah?",
+        choices: ["July 2nd", "July 8th", "July 18th", "July 28th"],
+        correct: ["July 8th"],
+        cuteRight: "Yesss 🥹🤍",
+        cuteWrong: "Wrong 😭 try again (you HAVE to know this one)"
+      },
+      {
+        q: "How long was our longest call?",
+        choices: ["2 hours", "3 hours", "5 hours", "8 hours"],
+        correct: ["5 hours"],
+        cuteRight: "We were obsessed 😂💕",
+        cuteWrong: "Close… but not quite 😌"
+      },
+      {
+        q: "How many birth marks do I have?",
+        choices: ["1", "2", "3", "4"],
+        correct: ["3", "4"],
+        cuteRight: "I’ll accept that 😭😂 (even I’m not sure)",
+        cuteWrong: "Not that… try again 😅"
+      },
+      {
+        q: "What’s my favorite ‘us’ activity?",
+        choices: ["Long drives", "Food dates", "Laughing at random things", "All of the above"],
+        correct: ["All of the above"],
+        cuteRight: "Correct 😌✅",
+        cuteWrong: "Come on… it’s a trick question 😄"
+      },
+      {
+        q: "If I say ‘we should go out just for one hour’… what does it really mean?",
+        choices: ["Exactly 1 hour", "2 hours", "4+ hours", "Depends on dessert"],
+        correct: ["Depends on dessert"],
+        cuteRight: "LOOOOL yes 😭🍰",
+        cuteWrong: "Nope 😄 try again"
+      },
+      {
+        q: "Who is the cutest wife in the world?",
+        choices: ["Maria Faisal", "Maria Faisal (again)", "Literally Maria Faisal", "All of the above"],
+        correct: ["All of the above"],
+        cuteRight: "Exactly 💕😂",
+        cuteWrong: "Wrong answer doesn’t exist… pick wisely 😌"
+      }
+    ];
+
+    let idx = -1;
+
+    const qEl = document.getElementById('q');
+    const subEl = document.getElementById('sub');
+    const choicesEl = document.getElementById('choices');
+    const hintEl = document.getElementById('hint');
+    const passWrap = document.getElementById('passWrap');
+    const startBtns = document.getElementById('startBtns');
+    const progress = document.getElementById('progress');
+
+    // Enter key works on passcode
+    document.getElementById('pass')?.addEventListener('keydown', (e) => {
+      if(e.key === 'Enter') checkPass();
+    });
+
+    function checkPass(){
+      const p = document.getElementById('pass');
+      if(!p) return;
+
+      if(p.value.trim() === PASSCODE){
+        hintEl.textContent = 'Unlocked 😌💖';
+        passWrap.style.display = 'none';
+        startBtns.style.display = 'flex';
+        choicesEl.style.display = 'none';
+      } else {
+        hintEl.textContent = 'Wrong passcode 😅 try again';
+        shakeCard();
+        try { p.select(); } catch(e){}
+      }
+    }
+
+    function start(){
+      startBtns.style.display = 'none';
+      choicesEl.style.display = 'grid';
+      hintEl.textContent = '';
+      idx = 0;
+      render();
+    }
+
+    function render(){
+      const item = quiz[idx];
+      qEl.textContent = item.q;
+      subEl.textContent = `Question ${idx + 1} of ${quiz.length}`;
+      progress.style.width = `${(idx / quiz.length) * 100}%`;
+
+      // shuffle choices for variety
+      const shuffled = [...item.choices].sort(() => Math.random() - 0.5);
+      choicesEl.innerHTML = '';
+
+      shuffled.forEach(ch => {
+        const b = document.createElement('button');
+        b.textContent = ch;
+        b.onclick = () => pick(ch);
+        choicesEl.appendChild(b);
+      });
+
+      hintEl.textContent = '';
+    }
+
+    function pick(choice){
+      const item = quiz[idx];
+      const ok = item.correct.includes(choice);
+
+      if(ok){
+        hintEl.textContent = item.cuteRight;
+        miniConfetti();
+
+        setTimeout(() => {
+          idx++;
+          if(idx < quiz.length){
+            render();
+          } else {
+            finalScreen();
+          }
+        }, 650);
+      } else {
+        hintEl.textContent = item.cuteWrong;
+        shakeCard();
+      }
+    }
+
+    function finalScreen(){
+      progress.style.width = `100%`;
+      const card = document.getElementById('card');
+      card.innerHTML = `
+        <div class="sparkle"></div>
+        <div class="top">
+          <div class="pill">💌 For Maria Faisal</div>
+          <div class="progressWrap"><div class="progress" style="width:100%"></div></div>
+        </div>
+        <div class="heartBig">💖</div>
+        <h1>Okay… you unlocked it 😌</h1>
+        <p class="sub">Ready? Countdown time…</p>
+        <div class="footer">
+          <button class="primary" onclick="countdownToValentine()">Start countdown ⏳</button>
+        </div>
+        <p class="tinyNote">(don’t blink 😄)</p>
+      `;
+      bigConfetti();
+    }
+
+    function countdownToValentine(){
+      const card = document.getElementById('card');
+      let n = 3;
+      bigConfetti();
+
+      const tick = () => {
+        card.innerHTML = `
+          <div class="sparkle"></div>
+          <div class="top">
+            <div class="pill">💌 For Maria Faisal</div>
+            <div class="progressWrap"><div class="progress" style="width:100%"></div></div>
+          </div>
+          <div class="countNum">${n}</div>
+          <p class="sub">Get ready…</p>
+        `;
+        if(n === 0){
+          valentine();
+          return;
+        }
+        n--;
+        setTimeout(tick, 650);
+      };
+
+      tick();
+    }
+
+    function valentine(){
+      const card = document.getElementById('card');
+      card.innerHTML = `
+        <div class="sparkle"></div>
+        <div class="heartBig">❤️</div>
+        <h1>Maria Faisal… will you be my Valentine?</h1>
+        <p class="sub">— Love, Abdul‑Rehman Gul</p>
+        <div class="footer">
+          <button class="primary" onclick="yes()">YES 💘</button>
+        </div>
+      `;
+    }
+
+    function yes(){
+      const card = document.getElementById('card');
+      card.innerHTML = `
+        <div class="sparkle"></div>
+        <div class="heartBig">💘</div>
+        <h1>Yay!!! I love you forever ❤️</h1>
+        <p class="sub">Happy Valentine’s Day, Maria.</p>
+        <img class="photo" src="IMG_8768.jpg" alt="Abdul-Rehman Gul and Maria Faisal" />
+        <p class="tinyNote">If the photo doesn’t show, keep <b>IMG_8768.jpg</b> in the same folder as this HTML.</p>
+        <div class="footer">
+          <button class="primary" onclick="bigConfetti()">More confetti 🎉</button>
+        </div>
+      `;
+      bigConfetti();
+    }
+
+    function shakeCard(){
+      const card = document.getElementById('card');
+      card.classList.remove('shake');
+      void card.offsetWidth;
+      card.classList.add('shake');
+    }
+
+    // WOW FACTOR: floating hearts + confetti
+    setInterval(() => {
+      const h = document.createElement('div');
+      h.className = 'floater';
+      h.textContent = ['❤','💖','💕','💗','💘'][Math.floor(Math.random()*5)];
+      h.style.left = Math.random()*100 + 'vw';
+      h.style.fontSize = (14 + Math.random()*26) + 'px';
+      h.style.animationDuration = (6 + Math.random()*6) + 's';
+      document.body.appendChild(h);
+      setTimeout(()=>h.remove(), 14000);
+    }, 520);
+
+    function miniConfetti(){
+      for(let i=0;i<28;i++) dropConfetti(0.9);
+    }
+
+    function bigConfetti(){
+      for(let i=0;i<140;i++) dropConfetti(1);
+    }
+
+    function dropConfetti(scale){
+      const c = document.createElement('div');
+      c.className = 'confetti';
+      c.style.left = Math.random()*100 + 'vw';
+      c.style.background = `hsl(${Math.random()*360}, 90%, 60%)`;
+      c.style.animationDuration = (2.1 + Math.random()*2.2) + 's';
+      c.style.transform = `rotate(${Math.random()*360}deg) scale(${scale})`;
+      document.body.appendChild(c);
+      setTimeout(()=>c.remove(), 4800);
+    }
+  </script>
+</body>
+</html>
